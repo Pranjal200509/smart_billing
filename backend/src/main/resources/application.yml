@@ -1,0 +1,46 @@
+server:
+  port: 8080
+  address: 0.0.0.0
+
+spring:
+  application:
+    name: electricity-billing-backend
+  datasource:
+    url: jdbc:h2:file:./data/electricity_billing_db;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;MODE=MySQL;NON_KEYWORDS=USER
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+    hikari:
+      pool-name: ElectricityBillingHikariPool
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 20000
+      auto-commit: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: false
+    show-sql: false
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+app:
+  jwt:
+    secret: 9a4f2c8d3b7a1e5f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8A9B0C1D
+    expiration-ms: 86400000 # 24 hours
+
+razorpay:
+  key-id: ${RAZORPAY_KEY_ID:rzp_test_51gXf691ZqP4fM}
+  key-secret: ${RAZORPAY_KEY_SECRET:placeholder_secret}
+  currency: INR
+
