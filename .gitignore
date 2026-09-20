@@ -23,3 +23,8 @@ backend/*.iml
 .env
 *.jks
 *.keystore
+
+# Logs & Crash Dumps
+*.log
+replay_pid*.log
+hs_err_pid*.log
